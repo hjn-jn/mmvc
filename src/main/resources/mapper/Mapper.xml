@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="config">
+
+    <select id="selectMenuIsActive" resultType="java.util.HashMap" parameterType="Map">
+        select * from c_menu
+        where isactive = 'Y'
+    </select>
+
+    <select id="selectAllMenu" resultType="java.util.HashMap" parameterType="Map">
+        select * from c_menu
+    </select>
+
+    <select id="selectStoreByCity" resultType="java.util.HashMap" parameterType="Map">
+        select cs.name,cs.code,cs.lat,cs.lng,cs.name,cc.name
+        from c_STORE cs
+        left join C_CITY cc
+        on cs.C_CITY_id = cc.id
+        where cs.code like 'A%' and cs.isactive = 'Y'
+        and	cs.c_province_id is not null
+        <if test="city != null and '' != city">
+            <![CDATA[
+              AND cc.name like '%${city}%'
+            ]]>
+        </if>
+    </select>
+</mapper>
