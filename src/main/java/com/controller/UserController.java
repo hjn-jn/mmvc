@@ -19,8 +19,8 @@ import java.util.Map;
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/selectMenuIsactive")
-    public String selectMenuIsactive(){
+    @RequestMapping("/selectMenuIsActive")
+    public String selectMenuIsActive(){
         Map map = new HashMap();
         List list = userService.getUserByMap(map);
         return SUCCESS;

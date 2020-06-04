@@ -34,7 +34,11 @@ import java.util.Map;
     @RequestMapping("/selectAllMenu")
     public String selectAllMenu(){
         Map map = new HashMap();
-        List list = configService.selectAllMenu(map);
+        try {
+            List list = configService.selectAllMenu(map);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return SUCCESS;
     }
 
